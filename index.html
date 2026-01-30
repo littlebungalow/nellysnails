@@ -39,7 +39,7 @@
           <div class="hero-details">
             <div>
               <span class="detail-title">Hours</span>
-              <span>Tue-Sat - 10am-4pm</span>
+              <span>Monday, Wednesday, Friday - 9:45am-2pm</span>
             </div>
             <div>
               <span class="detail-title">Location</span>
@@ -224,13 +224,27 @@
               <option>Extra: Nail art (from £1-£10)</option>
             </select>
           </div>
-          <div>
-            <label for="date">Preferred date</label>
-            <input id="date" name="date" type="date" required />
+          <div class="calendar-picker">
+            <label for="date-display">Preferred date</label>
+            <input id="date-display" type="text" placeholder="Select a date" readonly />
+            <input id="date" name="date" type="hidden" required />
+            <div class="calendar" data-calendar>
+              <div class="calendar-header">
+                <button type="button" class="cal-nav" data-prev aria-label="Previous month">‹</button>
+                <div class="cal-month" data-month></div>
+                <button type="button" class="cal-nav" data-next aria-label="Next month">›</button>
+              </div>
+              <div class="cal-weekdays">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              <div class="cal-grid" data-grid></div>
+            </div>
           </div>
           <div>
             <label for="time">Preferred time</label>
-            <input id="time" name="time" type="time" required />
+            <select id="time" name="time" required>
+              <option value="">Select a time</option>
+            </select>
           </div>
           <div>
             <label for="notes">Notes</label>
@@ -278,7 +292,7 @@
       <div>
         <p>Call or text: (+44) 9495 78865</p>
         <p>Email: nellysnailssss@gmail.com</p>
-        <p>Tue-Sat - 10am-4pm</p>
+        <p>Monday, Wednesday, Friday - 9:45am-2pm</p>
       </div>
       <div class="socials">
         <div class="social-item">          <a class="social-link" href="https://instagram.com/nellys.nailssss" target="_blank" rel="noopener">            <span class="icon" aria-hidden="true">
@@ -288,11 +302,19 @@
               <circle cx="17.2" cy="6.8" r="1.2" />
             </svg>
           </span>            <span>Follow: @nellys.nailssss</span>          </a>        </div>
-        <div class="social-item">          <a class="social-link" href="https://facebook.com/nellys.nails" target="_blank" rel="noopener">            <span class="icon" aria-hidden="true">
+        <div class="social-item">          <a class="social-link" href="https://www.facebook.com/profile.php?id=61555732746046" target="_blank" rel="noopener">            <span class="icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" role="img" focusable="false">
               <path d="M13.5 9H16V6h-2.5A4.5 4.5 0 0 0 9 10.5V13H7v3h2v6h3v-6h2.6l.4-3H12v-2.5A1.5 1.5 0 0 1 13.5 9Z" />
             </svg>
           </span>            <span>Facebook: Nellys Nails</span>         </a>       </div>
+      </div>
+      <div>
+        <p>
+          Created by
+          <a class="social-link" href="https://www.littlebungalowdesigns.com" target="_blank" rel="noopener">
+            Little Bungalow Designs
+          </a>
+        </p>
       </div>
     </footer>
 
@@ -307,10 +329,161 @@
         message.textContent = "Sorry, something went wrong. Please try again or call us.";
         message.classList.add("error");
       }
+
+      const dateInput = document.getElementById("date");
+      const dateDisplay = document.getElementById("date-display");
+      const timeSelect = document.getElementById("time");
+      const form = document.querySelector(".form-grid");
+      const availabilityMessage = document.createElement("div");
+      availabilityMessage.className = "form-message error";
+      availabilityMessage.style.display = "none";
+      availabilityMessage.textContent =
+        "Please choose a Monday, Wednesday, or Friday between 9:45am and 2:00pm.";
+      form.prepend(availabilityMessage);
+
+      const calendar = document.querySelector("[data-calendar]");
+      const grid = calendar.querySelector("[data-grid]");
+      const monthLabel = calendar.querySelector("[data-month]");
+      const prevBtn = calendar.querySelector("[data-prev]");
+      const nextBtn = calendar.querySelector("[data-next]");
+      const allowedDays = new Set([1, 3, 5]); // Mon, Wed, Fri
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      let selectedValue = "";
+
+      function pad(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function formatValue(date) {
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+      }
+
+      function formatDisplay(date) {
+        return date.toLocaleDateString("en-GB", {
+          weekday: "long",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+      }
+
+      function isSelectable(date) {
+        const day = date.getDay();
+        if (!allowedDays.has(day)) return false;
+        if (date < today) return false;
+        return true;
+      }
+
+      function renderCalendar() {
+        grid.innerHTML = "";
+        const year = viewDate.getFullYear();
+        const month = viewDate.getMonth();
+        monthLabel.textContent = viewDate.toLocaleDateString("en-GB", {
+          month: "long",
+          year: "numeric",
+        });
+
+        const firstDay = new Date(year, month, 1);
+        const startOffset = (firstDay.getDay() + 6) % 7; // Monday start
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < startOffset; i += 1) {
+          const empty = document.createElement("div");
+          empty.className = "cal-empty";
+          grid.appendChild(empty);
+        }
+
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const date = new Date(year, month, day);
+          const value = formatValue(date);
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "cal-day";
+          button.textContent = day;
+
+          if (!isSelectable(date)) {
+            button.classList.add("is-disabled");
+            button.disabled = true;
+          }
+
+          if (value === selectedValue) {
+            button.classList.add("is-selected");
+          }
+
+          button.addEventListener("click", () => {
+            selectedValue = value;
+            dateInput.value = value;
+            dateDisplay.value = formatDisplay(date);
+            availabilityMessage.style.display = "none";
+            calendar.classList.remove("is-open");
+            renderCalendar();
+          });
+
+          grid.appendChild(button);
+        }
+      }
+
+      prevBtn.addEventListener("click", () => {
+        viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
+        renderCalendar();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
+        renderCalendar();
+      });
+
+      function populateTimes() {
+        const startMinutes = 9 * 60 + 45;
+        const endMinutes = 14 * 60;
+        const step = 15;
+
+        for (let minutes = startMinutes; minutes <= endMinutes; minutes += step) {
+          const hours = Math.floor(minutes / 60);
+          const mins = minutes % 60;
+          const value = `${pad(hours)}:${pad(mins)}`;
+          const label = new Date(0, 0, 0, hours, mins).toLocaleTimeString("en-GB", {
+            hour: "numeric",
+            minute: "2-digit",
+          });
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = label;
+          timeSelect.appendChild(option);
+        }
+      }
+
+      populateTimes();
+      renderCalendar();
+
+      dateDisplay.addEventListener("click", () => {
+        calendar.classList.toggle("is-open");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!calendar.contains(event.target) && event.target !== dateDisplay) {
+          calendar.classList.remove("is-open");
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          calendar.classList.remove("is-open");
+        }
+      });
+
+      form.addEventListener("submit", (event) => {
+        if (!dateInput.value || !timeSelect.value) {
+          availabilityMessage.style.display = "block";
+          event.preventDefault();
+        }
+      });
     </script>
   </body>
 </html>
-
 
 
 

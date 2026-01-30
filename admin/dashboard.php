@@ -110,7 +110,10 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
             <p class="status">Status: <span><?php echo escape($booking['status']); ?></span></p>
           </div>
-          <div class="tap-hint" aria-hidden="true"><?php echo escape($booking['name']); ?></div>
+          <div class="tap-hint" aria-hidden="true">
+            <?php echo escape($booking['name']); ?>
+            <span class="tap-date"><?php echo escape($booking['date']); ?></span>
+          </div>
           <div class="booking-actions">
             <?php if ($booking['status'] === 'pending'): ?>
               <form method="post">
