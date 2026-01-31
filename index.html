@@ -1,9 +1,36 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Nellys Nails | Nail Redo Studio</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <meta
+      name="description"
+      content="Nellys Nails is a boutique nail redo studio in Dulverton offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://nellysnails.com/" />
+    <meta name="theme-color" content="#f6ede0" />
+    <meta property="og:title" content="Nellys Nails | Nail Redo Studio" />
+    <meta
+      property="og:description"
+      content="Boutique nail redo studio in Dulverton offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nellysnails.com/" />
+    <meta property="og:image" content="https://nellysnails.com/nellysnails.jpg" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nellys Nails | Nail Redo Studio" />
+    <meta
+      name="twitter:description"
+      content="Boutique nail redo studio in Dulverton offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art."
+    />
+    <meta name="twitter:image" content="https://nellysnails.com/nellysnails.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,6 +38,37 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Nellys Nails",
+        "description": "Boutique nail redo studio offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art.",
+        "url": "https://nellysnails.com/",
+        "image": "https://nellysnails.com/nellysnails.jpg",
+        "telephone": "+44 9495 78865",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Amory Rd",
+          "addressLocality": "Dulverton",
+          "postalCode": "TA22",
+          "addressCountry": "GB"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Wednesday", "Friday"],
+            "opens": "09:45",
+            "closes": "14:00"
+          }
+        ],
+        "sameAs": [
+          "https://instagram.com/nellys.nailssss",
+          "https://www.facebook.com/profile.php?id=61555732746046"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -52,7 +110,7 @@
           </div>
         </div>
         <div class="hero-art">
-          <img src="nellysnails.jpg" alt="Nellys Nails logo" />
+          <img src="nellysnails.jpg" alt="Nellys Nails logo on a soft neutral background" />
         </div>
       </div>
     </header>
@@ -144,12 +202,12 @@
           <h2>Soft glam, clean edges, and bold accents</h2>
         </div>
         <div class="gallery-grid">
-          <div class="tile"><img class="gallery-image" src="image1.jpg" alt="Nails 1"></div>
-          <div class="tile"><img class="gallery-image" src="image2.jpg" alt="Nails 2"></div>
-          <div class="tile"><img class="gallery-image" src="image3.jpg" alt="Nails 3"></div>
-          <div class="tile"><img class="gallery-image" src="image4.jpg" alt="Nails 4"></div>
-          <div class="tile"><img class="gallery-image" src="image5.jpg" alt="Nails 5"></div>
-          <div class="tile"><img class="gallery-image" src="image6.jpg" alt="Nails 6"></div>
+          <div class="tile"><img class="gallery-image" src="image1.jpg" alt="Glossy neutral nails with clean edges"></div>
+          <div class="tile"><img class="gallery-image" src="image2.jpg" alt="Soft pink nail set with tidy cuticles"></div>
+          <div class="tile"><img class="gallery-image" src="image3.jpg" alt="Almond-shaped nails with subtle shimmer"></div>
+          <div class="tile"><img class="gallery-image" src="image4.jpg" alt="Classic manicure with a smooth finish"></div>
+          <div class="tile"><img class="gallery-image" src="image5.jpg" alt="Nail art detail with fine line accents"></div>
+          <div class="tile"><img class="gallery-image" src="image6.jpg" alt="Freshly redone nails with glossy top coat"></div>
         </div>
         <p class="gallery-note">
           Want your redo featured? Tag @nellys.nailssss on Instagram.
@@ -230,14 +288,26 @@
             <input id="date" name="date" type="hidden" required />
             <div class="calendar" data-calendar>
               <div class="calendar-header">
-                <button type="button" class="cal-nav" data-prev aria-label="Previous month">‹</button>
                 <div class="cal-month" data-month></div>
-                <button type="button" class="cal-nav" data-next aria-label="Next month">›</button>
+                <div class="cal-controls">
+                  <button type="button" class="cal-nav" data-prev aria-label="Previous month">‹</button>
+                  <button type="button" class="cal-nav" data-next aria-label="Next month">›</button>
+                </div>
               </div>
-              <div class="cal-weekdays">
-                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-              </div>
-              <div class="cal-grid" data-grid></div>
+              <table class="cal-table" aria-label="Calendar">
+                <thead>
+                  <tr>
+                    <th scope="col">Sun</th>
+                    <th scope="col">Mon</th>
+                    <th scope="col">Tue</th>
+                    <th scope="col">Wed</th>
+                    <th scope="col">Thu</th>
+                    <th scope="col">Fri</th>
+                    <th scope="col">Sat</th>
+                  </tr>
+                </thead>
+                <tbody data-grid></tbody>
+              </table>
             </div>
           </div>
           <div>
@@ -252,6 +322,10 @@
           </div>
           <button class="button" type="submit">Request booking</button>
         </form>
+        <p class="privacy-note">
+          Privacy: We only collect your name, email, phone, and booking notes to manage appointments and contact you about your booking.
+          We never sell your data. If you want your details removed, email us and we will delete them.
+        </p>
       </section>
 
       <section id="contact" class="section contact">
@@ -333,6 +407,7 @@
       const dateInput = document.getElementById("date");
       const dateDisplay = document.getElementById("date-display");
       const timeSelect = document.getElementById("time");
+      const serviceSelect = document.getElementById("service");
       const form = document.querySelector(".form-grid");
       const availabilityMessage = document.createElement("div");
       availabilityMessage.className = "form-message error";
@@ -352,6 +427,19 @@
 
       let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
       let selectedValue = "";
+      let dayBookings = [];
+
+      const OPEN_MINUTES = 9 * 60 + 45;
+      const CLOSE_MINUTES = 14 * 60;
+      const SLOT_STEP = 15;
+
+      function getServiceDuration(serviceLabel) {
+        if (!serviceLabel) return 120;
+        const lower = serviceLabel.toLowerCase();
+        if (lower.includes("removal")) return 40;
+        if (lower.includes("nail art")) return 30;
+        return 120;
+      }
 
       function pad(value) {
         return String(value).padStart(2, "0");
@@ -387,42 +475,63 @@
         });
 
         const firstDay = new Date(year, month, 1);
-        const startOffset = (firstDay.getDay() + 6) % 7; // Monday start
+        const startOffset = firstDay.getDay(); // Sunday start
         const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const totalCells = startOffset + daysInMonth;
+        const rows = Math.ceil(totalCells / 7);
 
-        for (let i = 0; i < startOffset; i += 1) {
-          const empty = document.createElement("div");
-          empty.className = "cal-empty";
-          grid.appendChild(empty);
-        }
+        let day = 1;
+        for (let row = 0; row < rows; row += 1) {
+          const rowEl = document.createElement("tr");
+          for (let col = 0; col < 7; col += 1) {
+            const cell = document.createElement("td");
+            if (row === 0 && col < startOffset) {
+              const empty = document.createElement("div");
+              empty.className = "cal-empty";
+              cell.appendChild(empty);
+              rowEl.appendChild(cell);
+              continue;
+            }
 
-        for (let day = 1; day <= daysInMonth; day += 1) {
-          const date = new Date(year, month, day);
-          const value = formatValue(date);
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "cal-day";
-          button.textContent = day;
+            if (day > daysInMonth) {
+              const empty = document.createElement("div");
+              empty.className = "cal-empty";
+              cell.appendChild(empty);
+              rowEl.appendChild(cell);
+              continue;
+            }
 
-          if (!isSelectable(date)) {
-            button.classList.add("is-disabled");
-            button.disabled = true;
+            const date = new Date(year, month, day);
+            const value = formatValue(date);
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "cal-day";
+            button.textContent = day;
+
+            if (!isSelectable(date)) {
+              button.classList.add("is-disabled");
+              button.disabled = true;
+            }
+
+            if (value === selectedValue) {
+              button.classList.add("is-selected");
+            }
+
+            button.addEventListener("click", () => {
+              selectedValue = value;
+              dateInput.value = value;
+              dateDisplay.value = formatDisplay(date);
+              availabilityMessage.style.display = "none";
+              calendar.classList.remove("is-open");
+              loadBookings(value);
+              renderCalendar();
+            });
+
+            cell.appendChild(button);
+            rowEl.appendChild(cell);
+            day += 1;
           }
-
-          if (value === selectedValue) {
-            button.classList.add("is-selected");
-          }
-
-          button.addEventListener("click", () => {
-            selectedValue = value;
-            dateInput.value = value;
-            dateDisplay.value = formatDisplay(date);
-            availabilityMessage.style.display = "none";
-            calendar.classList.remove("is-open");
-            renderCalendar();
-          });
-
-          grid.appendChild(button);
+          grid.appendChild(rowEl);
         }
       }
 
@@ -436,28 +545,89 @@
         renderCalendar();
       });
 
-      function populateTimes() {
-        const startMinutes = 9 * 60 + 45;
-        const endMinutes = 14 * 60;
-        const step = 15;
+      function minutesFromTime(value) {
+        const [hours, mins] = value.split(":").map(Number);
+        return hours * 60 + mins;
+      }
 
-        for (let minutes = startMinutes; minutes <= endMinutes; minutes += step) {
-          const hours = Math.floor(minutes / 60);
-          const mins = minutes % 60;
-          const value = `${pad(hours)}:${pad(mins)}`;
-          const label = new Date(0, 0, 0, hours, mins).toLocaleTimeString("en-GB", {
-            hour: "numeric",
-            minute: "2-digit",
-          });
+      function formatTimeLabel(minutes) {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return new Date(0, 0, 0, hours, mins).toLocaleTimeString("en-GB", {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+      }
+
+      function isSlotAvailable(startMinutes, duration, bookings) {
+        const endMinutes = startMinutes + duration;
+        for (const booking of bookings) {
+          const bookingStart = minutesFromTime(booking.time);
+          const bookingDuration = getServiceDuration(booking.service);
+          const bookingEnd = bookingStart + bookingDuration;
+          if (startMinutes < bookingEnd && endMinutes > bookingStart) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function populateTimes() {
+        timeSelect.innerHTML = "";
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Select a time";
+        timeSelect.appendChild(placeholder);
+
+        const service = serviceSelect.value;
+        const duration = getServiceDuration(service || "default");
+
+        const latestStart = CLOSE_MINUTES - duration;
+        for (let minutes = OPEN_MINUTES; minutes <= latestStart; minutes += SLOT_STEP) {
+          if (!isSlotAvailable(minutes, duration, dayBookings)) {
+            continue;
+          }
           const option = document.createElement("option");
-          option.value = value;
-          option.textContent = label;
+          option.value = `${pad(Math.floor(minutes / 60))}:${pad(minutes % 60)}`;
+          option.textContent = formatTimeLabel(minutes);
           timeSelect.appendChild(option);
+        }
+
+        if (timeSelect.options.length === 1) {
+          const noSlots = document.createElement("option");
+          noSlots.value = "";
+          noSlots.textContent = "No times available";
+          noSlots.disabled = true;
+          timeSelect.appendChild(noSlots);
         }
       }
 
-      populateTimes();
+      async function loadBookings(dateValue) {
+        dayBookings = [];
+        if (!dateValue) {
+          populateTimes();
+          return;
+        }
+
+        try {
+          const response = await fetch(`availability.php?date=${encodeURIComponent(dateValue)}`, {
+            headers: {
+              Accept: "application/json",
+            },
+          });
+          if (response.ok) {
+            const data = await response.json();
+            dayBookings = Array.isArray(data.bookings) ? data.bookings : [];
+          }
+        } catch (error) {
+          dayBookings = [];
+        }
+
+        populateTimes();
+      }
+
       renderCalendar();
+      populateTimes();
 
       dateDisplay.addEventListener("click", () => {
         calendar.classList.toggle("is-open");
@@ -475,6 +645,14 @@
         }
       });
 
+      serviceSelect.addEventListener("change", () => {
+        if (dateInput.value) {
+          loadBookings(dateInput.value);
+          return;
+        }
+        populateTimes();
+      });
+
       form.addEventListener("submit", (event) => {
         if (!dateInput.value || !timeSelect.value) {
           availabilityMessage.style.display = "block";
@@ -484,18 +662,3 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

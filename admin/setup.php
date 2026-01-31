@@ -1,5 +1,14 @@
 <?php
 require __DIR__ . '/../app/bootstrap.php';
+$config = require __DIR__ . '/../app/config.php';
+
+$setupKey = (string)($config['setup_key'] ?? '');
+$providedKey = (string)($_GET['key'] ?? '');
+if ($setupKey === '' || !hash_equals($setupKey, $providedKey)) {
+    http_response_code(403);
+    echo 'Setup is disabled. Configure setup_key in app/config.php and visit /admin/setup.php?key=YOUR_KEY';
+    exit;
+}
 
 // Run this once, then delete this file for security.
 

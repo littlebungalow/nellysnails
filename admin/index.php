@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../app/bootstrap.php';
 
-session_start();
+start_secure_session();
 if (!empty($_SESSION['user_id'])) {
     header('Location: /admin/dashboard.php');
     exit;

@@ -66,9 +66,49 @@ function send_email(string $to, string $subject, string $body): bool
     return mail($to, $subject, $body, implode("\r\n", $headers));
 }
 
+function start_secure_session(): void
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return;
+    }
+
+    $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.cookie_httponly', '1');
+    ini_set('session.cookie_secure', $secure ? '1' : '0');
+
+    $params = session_get_cookie_params();
+    if (PHP_VERSION_ID >= 70300) {
+        session_set_cookie_params([
+            'lifetime' => $params['lifetime'],
+            'path' => $params['path'],
+            'domain' => $params['domain'],
+            'secure' => $secure,
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
+    } else {
+        session_set_cookie_params(
+            $params['lifetime'],
+            $params['path'] . '; samesite=Lax',
+            $params['domain'],
+            $secure,
+            true
+        );
+    }
+
+    session_start();
+    if (empty($_SESSION['regenerated'])) {
+        session_regenerate_id(true);
+        $_SESSION['regenerated'] = true;
+    }
+}
+
 function require_login(): void
 {
-    session_start();
+    start_secure_session();
     if (empty($_SESSION['user_id'])) {
         header('Location: /admin/index.php');
         exit;

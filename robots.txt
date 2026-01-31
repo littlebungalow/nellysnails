@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /data/
+Disallow: /cron/
+
+Sitemap: https://nellysnails.com/sitemap.xml

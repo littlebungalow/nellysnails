@@ -26,7 +26,8 @@ Boutique nail redo studio website with a booking form and an admin dashboard for
 2) Ensure the `data/` folder is writable.
 3) Open the site and submit a test booking to create `data/app.db`.
 4) Run the admin setup once:
-   - Visit `/admin/setup.php`
+   - Set `setup_key` in `app/config.php`
+   - Visit `/admin/setup.php?key=YOUR_KEY`
    - Then delete `admin/setup.php` for security
 
 ## Admin access
@@ -40,13 +41,14 @@ Edit `app/config.php`:
 - `from_email` / `from_name`: email sender
 - `timezone`: default timezone (example: `America/Chicago`)
 - `send_status_emails`: send accepted/rejected emails
+- `setup_key`: required to run `/admin/setup.php`
 - `db_path`: SQLite file path (default `data/app.db`)
 
 ## Deployment (Hostinger or similar)
 1) Upload all files to `public_html/`.
 2) Ensure `data/` is writable by PHP.
 3) Visit the site and submit a booking to create the database file.
-4) Run `/admin/setup.php` once, then delete it.
+4) Set `setup_key` in `app/config.php` and run `/admin/setup.php?key=YOUR_KEY` once, then delete it.
 
 ## Notes
 - The booking form requires PHP mail to be configured on the host.

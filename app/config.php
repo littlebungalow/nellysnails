@@ -4,7 +4,7 @@ return [
     'studio_email' => 'nellysnailssss@gmail.com',
     'from_email' => 'nellysnailssss@gmail.com',
     'from_name' => "Nellys Nails",
-    'timezone' => 'America/Chicago',
+    'timezone' => 'England/London',
     'send_status_emails' => true,
+    'setup_key' => '',
 ];
-

@@ -326,6 +326,7 @@ img {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   margin-top: 24px;
+  align-items: start;
 }
 
 .form-grid label,
@@ -361,6 +362,7 @@ textarea {
   display: grid;
   gap: 10px;
   position: relative;
+  align-self: start;
 }
 
 .calendar {
@@ -375,6 +377,8 @@ textarea {
   z-index: 10;
   width: min(320px, 90vw);
   display: none;
+  max-height: none;
+  overflow: hidden;
 }
 
 .calendar.is-open {
@@ -382,11 +386,37 @@ textarea {
 }
 
 .calendar-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
+}
+
+.cal-controls {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cal-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--rose);
+  padding: 4px 0 8px;
+  text-align: center;
+}
+
+.cal-table td {
+  padding: 2px;
+  height: 30px;
 }
 
 .cal-nav {
@@ -404,37 +434,17 @@ textarea {
   font-weight: 600;
 }
 
-.cal-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--rose);
-  margin-bottom: 6px;
-}
-
-.cal-weekdays span {
-  text-align: center;
-}
-
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-}
-
-.cal-day,
-.cal-empty {
-  height: 30px;
-  border-radius: 8px;
-}
-
 .cal-day {
   border: 1px solid #d9c5b3;
   background: white;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 
 .cal-day.is-selected {
@@ -450,6 +460,9 @@ textarea {
 }
 
 .cal-empty {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
   background: transparent;
 }
 
