@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /admin/
 Disallow: /data/
 Disallow: /cron/
+Allow: /llms.txt
 
 Sitemap: https://nellysnails.com/sitemap.xml

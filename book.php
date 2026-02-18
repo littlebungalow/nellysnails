@@ -16,6 +16,18 @@ if ($name === '' || $email === '' || $phone === '' || $service === '' || $date =
     exit;
 }
 
+if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+    header('Location: /index.html?status=error');
+    exit;
+}
+
+$blockedStmt = db()->prepare('SELECT 1 FROM blocked_dates WHERE date = :date LIMIT 1');
+$blockedStmt->execute([':date' => $date]);
+if ((bool)$blockedStmt->fetchColumn()) {
+    header('Location: /index.html?status=blocked');
+    exit;
+}
+
 $reference = strtoupper(bin2hex(random_bytes(4)));
 $now = (new DateTimeImmutable())->format('Y-m-d H:i:s');
 

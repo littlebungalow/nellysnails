@@ -12,8 +12,13 @@
       name="description"
       content="Nellys Nails is a boutique nail redo studio in Dulverton offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art."
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Nellys Nails" />
     <link rel="canonical" href="https://nellysnails.com/" />
+    <link rel="alternate" hreflang="en-GB" href="https://nellysnails.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://nellysnails.com/" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs guidance" />
     <meta name="theme-color" content="#f6ede0" />
     <meta property="og:title" content="Nellys Nails | Nail Redo Studio" />
     <meta
@@ -23,6 +28,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nellysnails.com/" />
     <meta property="og:image" content="https://nellysnails.com/nellysnails.jpg" />
+    <meta property="og:image:alt" content="Nellys Nails branding and studio visuals" />
+    <meta property="og:site_name" content="Nellys Nails" />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nellys Nails | Nail Redo Studio" />
@@ -31,6 +38,8 @@
       content="Boutique nail redo studio in Dulverton offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art."
     />
     <meta name="twitter:image" content="https://nellysnails.com/nellysnails.jpg" />
+    <meta name="twitter:image:alt" content="Nellys Nails branding and studio visuals" />
+    <meta name="twitter:site" content="@nellys.nailssss" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,31 +50,112 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "BeautySalon",
-        "name": "Nellys Nails",
-        "description": "Boutique nail redo studio offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art.",
-        "url": "https://nellysnails.com/",
-        "image": "https://nellysnails.com/nellysnails.jpg",
-        "telephone": "+44 9495 78865",
-        "priceRange": "££",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Amory Rd",
-          "addressLocality": "Dulverton",
-          "postalCode": "TA22",
-          "addressCountry": "GB"
-        },
-        "openingHoursSpecification": [
+        "@graph": [
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Wednesday", "Friday"],
-            "opens": "09:45",
-            "closes": "14:00"
+            "@type": "BeautySalon",
+            "@id": "https://nellysnails.com/#business",
+            "name": "Nellys Nails",
+            "description": "Boutique nail redo studio offering GelX, BIAB, hard gel overlays, manicures, infills, removals, and nail art.",
+            "url": "https://nellysnails.com/",
+            "image": "https://nellysnails.com/nellysnails.jpg",
+            "telephone": "+44 9495 78865",
+            "email": "nellysnailssss@gmail.com",
+            "priceRange": "££",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Amory Rd",
+              "addressLocality": "Dulverton",
+              "postalCode": "TA22",
+              "addressCountry": "GB"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Wednesday", "Friday"],
+                "opens": "09:45",
+                "closes": "14:00"
+              }
+            ],
+            "sameAs": [
+              "https://instagram.com/nellys.nailssss",
+              "https://www.facebook.com/profile.php?id=61555732746046"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Nail Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "GelX (extensions)" },
+                  "price": "30",
+                  "priceCurrency": "GBP"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "BIAB with gel colour" },
+                  "price": "35",
+                  "priceCurrency": "GBP"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Hard gel overlay" },
+                  "price": "33",
+                  "priceCurrency": "GBP"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Gel manicure" },
+                  "price": "25",
+                  "priceCurrency": "GBP"
+                }
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://nellysnails.com/#website",
+            "url": "https://nellysnails.com/",
+            "name": "Nellys Nails",
+            "description": "Nail redo studio in Dulverton for GelX, BIAB, hard gel overlays, and nail art."
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://nellysnails.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What days are you open for appointments?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Appointments are available Monday, Wednesday, and Friday from 9:45am to 2:00pm."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which services can I book?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can book GelX, BIAB, hard gel overlay, gel manicure, infills, removals, and nail art."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I request a booking?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use the booking form on this page, choose your service, date and time, then submit your details. You will receive an email confirmation after your request is received."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where is Nellys Nails located?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nellys Nails is located on Amory Rd, Dulverton, TA22."
+                }
+              }
+            ]
           }
-        ],
-        "sameAs": [
-          "https://instagram.com/nellys.nailssss",
-          "https://www.facebook.com/profile.php?id=61555732746046"
         ]
       }
     </script>
@@ -78,6 +168,7 @@
           <a href="#services">Pricing</a>
           <a href="#gallery">Gallery</a>
           <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
           <a class="cta" href="#booking">Book</a>
         </div>
@@ -110,7 +201,12 @@
           </div>
         </div>
         <div class="hero-art">
-          <img src="nellysnails.jpg" alt="Nellys Nails logo on a soft neutral background" />
+          <img
+            src="nellysnails.jpg"
+            alt="Nellys Nails logo on a soft neutral background"
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
       </div>
     </header>
@@ -202,12 +298,12 @@
           <h2>Soft glam, clean edges, and bold accents</h2>
         </div>
         <div class="gallery-grid">
-          <div class="tile"><img class="gallery-image" src="image1.jpg" alt="Glossy neutral nails with clean edges"></div>
-          <div class="tile"><img class="gallery-image" src="image2.jpg" alt="Soft pink nail set with tidy cuticles"></div>
-          <div class="tile"><img class="gallery-image" src="image3.jpg" alt="Almond-shaped nails with subtle shimmer"></div>
-          <div class="tile"><img class="gallery-image" src="image4.jpg" alt="Classic manicure with a smooth finish"></div>
-          <div class="tile"><img class="gallery-image" src="image5.jpg" alt="Nail art detail with fine line accents"></div>
-          <div class="tile"><img class="gallery-image" src="image6.jpg" alt="Freshly redone nails with glossy top coat"></div>
+          <div class="tile"><img class="gallery-image" src="image1.jpg" alt="Glossy neutral nails with clean edges" loading="lazy" decoding="async"></div>
+          <div class="tile"><img class="gallery-image" src="image2.jpg" alt="Soft pink nail set with tidy cuticles" loading="lazy" decoding="async"></div>
+          <div class="tile"><img class="gallery-image" src="image3.jpg" alt="Almond-shaped nails with subtle shimmer" loading="lazy" decoding="async"></div>
+          <div class="tile"><img class="gallery-image" src="image4.jpg" alt="Classic manicure with a smooth finish" loading="lazy" decoding="async"></div>
+          <div class="tile"><img class="gallery-image" src="image5.jpg" alt="Nail art detail with fine line accents" loading="lazy" decoding="async"></div>
+          <div class="tile"><img class="gallery-image" src="image6.jpg" alt="Freshly redone nails with glossy top coat" loading="lazy" decoding="async"></div>
         </div>
         <p class="gallery-note">
           Want your redo featured? Tag @nellys.nailssss on Instagram.
@@ -328,6 +424,31 @@
         </p>
       </section>
 
+      <section id="faq" class="section faq">
+        <div class="section-header">
+          <p class="eyebrow">Frequently asked questions</p>
+          <h2>Quick answers before you book</h2>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>What are your opening hours?</h3>
+            <p>Monday, Wednesday, and Friday from 9:45am to 2:00pm.</p>
+          </article>
+          <article class="faq-item">
+            <h3>What services can I book?</h3>
+            <p>GelX, BIAB, hard gel overlays, gel manicures, infills, removals, and nail art.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How do bookings work?</h3>
+            <p>Submit the booking form with your preferred date and time, and we will confirm by email.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Where are you based?</h3>
+            <p>Amory Rd, Dulverton, TA22.</p>
+          </article>
+        </div>
+      </section>
+
       <section id="contact" class="section contact">
         <div class="contact-grid">
           <div>
@@ -399,6 +520,9 @@
       if (status === "success") {
         message.textContent = "Thanks! Your booking request is in. We'll email you shortly.";
         message.classList.add("success");
+      } else if (status === "blocked") {
+        message.textContent = "That date is currently unavailable. Please pick another day.";
+        message.classList.add("error");
       } else if (status === "error") {
         message.textContent = "Sorry, something went wrong. Please try again or call us.";
         message.classList.add("error");
@@ -428,6 +552,8 @@
       let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
       let selectedValue = "";
       let dayBookings = [];
+      let blockedDates = new Set();
+      let selectedDateBlocked = false;
 
       const OPEN_MINUTES = 9 * 60 + 45;
       const CLOSE_MINUTES = 14 * 60;
@@ -458,10 +584,16 @@
         });
       }
 
+      function monthKey(date) {
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}`;
+      }
+
       function isSelectable(date) {
         const day = date.getDay();
+        const value = formatValue(date);
         if (!allowedDays.has(day)) return false;
         if (date < today) return false;
+        if (blockedDates.has(value)) return false;
         return true;
       }
 
@@ -538,11 +670,13 @@
       prevBtn.addEventListener("click", () => {
         viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
         renderCalendar();
+        loadBlockedDatesForMonth(viewDate);
       });
 
       nextBtn.addEventListener("click", () => {
         viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
         renderCalendar();
+        loadBlockedDatesForMonth(viewDate);
       });
 
       function minutesFromTime(value) {
@@ -579,6 +713,15 @@
         placeholder.textContent = "Select a time";
         timeSelect.appendChild(placeholder);
 
+        if (selectedDateBlocked) {
+          const unavailable = document.createElement("option");
+          unavailable.value = "";
+          unavailable.textContent = "Date unavailable";
+          unavailable.disabled = true;
+          timeSelect.appendChild(unavailable);
+          return;
+        }
+
         const service = serviceSelect.value;
         const duration = getServiceDuration(service || "default");
 
@@ -604,6 +747,7 @@
 
       async function loadBookings(dateValue) {
         dayBookings = [];
+        selectedDateBlocked = false;
         if (!dateValue) {
           populateTimes();
           return;
@@ -617,17 +761,60 @@
           });
           if (response.ok) {
             const data = await response.json();
+            selectedDateBlocked = Boolean(data.blocked);
             dayBookings = Array.isArray(data.bookings) ? data.bookings : [];
+            if (selectedDateBlocked) {
+              availabilityMessage.textContent = "This date has been blocked. Please pick another day.";
+              availabilityMessage.style.display = "block";
+            } else {
+              availabilityMessage.textContent =
+                "Please choose a Monday, Wednesday, or Friday between 9:45am and 2:00pm.";
+              availabilityMessage.style.display = "none";
+            }
           }
         } catch (error) {
           dayBookings = [];
+          selectedDateBlocked = false;
         }
 
         populateTimes();
       }
 
+      async function loadBlockedDatesForMonth(monthDate) {
+        try {
+          const response = await fetch(`availability.php?month=${encodeURIComponent(monthKey(monthDate))}`, {
+            headers: {
+              Accept: "application/json",
+            },
+          });
+          if (response.ok) {
+            const data = await response.json();
+            const values = Array.isArray(data.blockedDates) ? data.blockedDates : [];
+            blockedDates = new Set(values);
+          } else {
+            blockedDates = new Set();
+          }
+        } catch (error) {
+          blockedDates = new Set();
+        }
+
+        if (selectedValue && blockedDates.has(selectedValue)) {
+          selectedValue = "";
+          dateInput.value = "";
+          dateDisplay.value = "";
+          selectedDateBlocked = false;
+          dayBookings = [];
+          availabilityMessage.textContent = "Selected date is now unavailable. Please choose another day.";
+          availabilityMessage.style.display = "block";
+          populateTimes();
+        }
+
+        renderCalendar();
+      }
+
       renderCalendar();
       populateTimes();
+      loadBlockedDatesForMonth(viewDate);
 
       dateDisplay.addEventListener("click", () => {
         calendar.classList.toggle("is-open");
@@ -654,8 +841,11 @@
       });
 
       form.addEventListener("submit", (event) => {
-        if (!dateInput.value || !timeSelect.value) {
+        if (!dateInput.value || !timeSelect.value || selectedDateBlocked) {
           availabilityMessage.style.display = "block";
+          if (selectedDateBlocked) {
+            availabilityMessage.textContent = "This date is unavailable. Please choose another day.";
+          }
           event.preventDefault();
         }
       });

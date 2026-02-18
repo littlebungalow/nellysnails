@@ -271,7 +271,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("nelliesnails.jpg") center/cover;
+  background: url("nellysnails.jpg") center/cover;
   opacity: 0.2;
 }
 
@@ -468,6 +468,30 @@ textarea {
 
 .contact {
   background: var(--cream);
+}
+
+.faq {
+  background: linear-gradient(120deg, #f6e8d8, #f9efe3);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 30px var(--shadow);
+  display: grid;
+  gap: 8px;
+}
+
+.faq-item h3 {
+  font-size: 18px;
+  font-family: "DM Serif Display", serif;
 }
 
 .contact-grid {

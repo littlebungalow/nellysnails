@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://nellysnails.com/</loc>
-    <lastmod>2026-01-31</lastmod>
+    <lastmod>2026-02-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nellysnails.com/nellysnails.jpg</image:loc>
+      <image:title>Nellys Nails</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image1.jpg</image:loc>
+      <image:title>Nail Gallery Image 1</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image2.jpg</image:loc>
+      <image:title>Nail Gallery Image 2</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image3.jpg</image:loc>
+      <image:title>Nail Gallery Image 3</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image4.jpg</image:loc>
+      <image:title>Nail Gallery Image 4</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image5.jpg</image:loc>
+      <image:title>Nail Gallery Image 5</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nellysnails.com/image6.jpg</image:loc>
+      <image:title>Nail Gallery Image 6</image:title>
+    </image:image>
   </url>
 </urlset>

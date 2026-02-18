@@ -201,7 +201,8 @@
 }
 
 .booking-actions .secondary,
-.edit-form .secondary {
+.edit-form .secondary,
+.blocked-item .secondary {
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--border);
@@ -225,6 +226,40 @@
 
 .empty {
   font-style: italic;
+}
+
+.block-card h2 {
+  margin: 0;
+}
+
+.block-card p {
+  margin: 0;
+}
+
+.blocked-list {
+  display: grid;
+  gap: 10px;
+}
+
+.blocked-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+.blocked-item div {
+  display: grid;
+  gap: 4px;
+}
+
+.blocked-item span {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .button-link {

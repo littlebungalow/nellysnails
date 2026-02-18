@@ -2,15 +2,27 @@
 require __DIR__ . '/../app/bootstrap.php';
 require_login();
 
+function is_valid_date_value(string $value): bool
+{
+    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
+        return false;
+    }
+
+    $date = DateTimeImmutable::createFromFormat('Y-m-d', $value);
+    return $date instanceof DateTimeImmutable && $date->format('Y-m-d') === $value;
+}
+
 $filter = $_GET['status'] ?? 'all';
 $allowed = ['all', 'pending', 'accepted', 'rejected'];
 if (!in_array($filter, $allowed, true)) {
     $filter = 'all';
 }
+$notice = $_GET['notice'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $id = (int)($_POST['id'] ?? 0);
+    $redirectNotice = '';
 
     if ($action === 'status' && $id > 0) {
         $status = $_POST['status'] ?? 'pending';
@@ -34,9 +46,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         }
+    } elseif ($action === 'block_dates') {
+        $start = trim($_POST['block_start'] ?? '');
+        $end = trim($_POST['block_end'] ?? '');
+        $note = trim($_POST['block_note'] ?? '');
+        if ($end === '') {
+            $end = $start;
+        }
+
+        if (!is_valid_date_value($start) || !is_valid_date_value($end)) {
+            $redirectNotice = 'block-invalid';
+        } else {
+            $startDate = new DateTimeImmutable($start);
+            $endDate = new DateTimeImmutable($end);
+            if ($endDate < $startDate) {
+                $redirectNotice = 'block-invalid';
+            } else {
+                $diffDays = (int)$startDate->diff($endDate)->days;
+                if ($diffDays > 365) {
+                    $redirectNotice = 'block-too-large';
+                } else {
+                    $insertStmt = db()->prepare(
+                        'INSERT OR REPLACE INTO blocked_dates (date, note, created_at) VALUES (:date, :note, :created_at)'
+                    );
+                    $createdAt = (new DateTimeImmutable())->format('Y-m-d H:i:s');
+                    $addedCount = 0;
+                    for ($cursor = $startDate; $cursor <= $endDate; $cursor = $cursor->modify('+1 day')) {
+                        $insertStmt->execute([
+                            ':date' => $cursor->format('Y-m-d'),
+                            ':note' => $note,
+                            ':created_at' => $createdAt,
+                        ]);
+                        $addedCount++;
+                    }
+                    $redirectNotice = 'block-added-' . $addedCount;
+                }
+            }
+        }
+    } elseif ($action === 'unblock_date') {
+        $blockedDate = trim($_POST['blocked_date'] ?? '');
+        if (is_valid_date_value($blockedDate)) {
+            $deleteStmt = db()->prepare('DELETE FROM blocked_dates WHERE date = :date');
+            $deleteStmt->execute([':date' => $blockedDate]);
+            $redirectNotice = 'block-removed';
+        } else {
+            $redirectNotice = 'block-invalid';
+        }
     }
 
-    header('Location: /admin/dashboard.php?status=' . urlencode($filter));
+    $redirect = '/admin/dashboard.php?status=' . urlencode($filter);
+    if ($redirectNotice !== '') {
+        $redirect .= '&notice=' . urlencode($redirectNotice);
+    }
+    header('Location: ' . $redirect);
     exit;
 }
 
@@ -51,6 +113,10 @@ $sql .= ' ORDER BY date ASC, time ASC, created_at ASC';
 $stmt = db()->prepare($sql);
 $stmt->execute($params);
 $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$blockedStmt = db()->prepare('SELECT date, note FROM blocked_dates ORDER BY date ASC');
+$blockedStmt->execute();
+$blockedDates = $blockedStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
 <html lang="en">
@@ -82,6 +148,57 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main class="admin-main">
+      <section class="admin-card block-card">
+        <h2>Block dates</h2>
+        <p>Use this for holidays or days off. Clients cannot book blocked dates.</p>
+        <form method="post">
+          <input type="hidden" name="action" value="block_dates" />
+          <label for="block-start">Start date</label>
+          <input id="block-start" name="block_start" type="date" required />
+          <label for="block-end">End date</label>
+          <input id="block-end" name="block_end" type="date" />
+          <label for="block-note">Reason (optional)</label>
+          <input id="block-note" name="block_note" type="text" maxlength="120" placeholder="Holiday" />
+          <button type="submit">Block date range</button>
+        </form>
+
+        <?php if ($notice === 'block-invalid'): ?>
+          <p class="alert error">Please use a valid start/end date.</p>
+        <?php elseif ($notice === 'block-too-large'): ?>
+          <p class="alert error">Date range is too large. Maximum is 365 days.</p>
+        <?php elseif ($notice === 'block-removed'): ?>
+          <p class="alert">Date removed from blocked list.</p>
+        <?php elseif (strpos($notice, 'block-added-') === 0): ?>
+          <p class="alert">
+            Blocked
+            <?php echo (int)substr($notice, strlen('block-added-')); ?>
+            date(s).
+          </p>
+        <?php endif; ?>
+
+        <?php if (empty($blockedDates)): ?>
+          <p class="empty">No blocked dates yet.</p>
+        <?php else: ?>
+          <div class="blocked-list">
+            <?php foreach ($blockedDates as $blocked): ?>
+              <div class="blocked-item">
+                <div>
+                  <strong><?php echo escape($blocked['date']); ?></strong>
+                  <?php if (!empty($blocked['note'])): ?>
+                    <span><?php echo escape($blocked['note']); ?></span>
+                  <?php endif; ?>
+                </div>
+                <form method="post">
+                  <input type="hidden" name="action" value="unblock_date" />
+                  <input type="hidden" name="blocked_date" value="<?php echo escape($blocked['date']); ?>" />
+                  <button type="submit" class="secondary">Unblock</button>
+                </form>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+      </section>
+
       <?php if (empty($bookings)): ?>
         <p class="empty">No bookings yet.</p>
       <?php endif; ?>

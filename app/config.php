@@ -6,5 +6,5 @@ return [
     'from_name' => "Nellys Nails",
     'timezone' => 'England/London',
     'send_status_emails' => true,
-    'setup_key' => '',
+    'setup_key' => 'Nellys-Setup-2026-03-14-8b7d9f',
 ];

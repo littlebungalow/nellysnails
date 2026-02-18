@@ -52,6 +52,15 @@ function migrate(PDO $pdo): void
             updated_at TEXT NOT NULL
         )"
     );
+
+    $pdo->exec(
+        "CREATE TABLE IF NOT EXISTS blocked_dates (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT UNIQUE NOT NULL,
+            note TEXT,
+            created_at TEXT NOT NULL
+        )"
+    );
 }
 
 function send_email(string $to, string $subject, string $body): bool
